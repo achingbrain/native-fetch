@@ -1,6 +1,6 @@
 {
   "name": "native-fetch",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Returns native fetch if available or the node-fetch module if not",
   "main": "src/index.js",
   "scripts": {
@@ -24,5 +24,8 @@
     "node-fetch": "^2.6.0",
     "aegir": "^26.0.0",
     "globalthis": "^1.0.1"
-  }
+  },
+  "contributors": [
+    "achingbrain <alex@achingbrain.net>"
+  ]
 }
