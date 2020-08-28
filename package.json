@@ -1,6 +1,6 @@
 {
   "name": "native-browser-fetch",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Returns native fetch if available or the node-fetch module if not",
   "main": "src/index.js",
   "scripts": {
