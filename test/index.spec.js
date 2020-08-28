@@ -21,7 +21,6 @@ describe('env', function () {
         expect(globalthis.fetch).to.be.ok()
         break
       case 'node':
-        console.info(NodeFetch)
         expect(NativeFetch).to.equal(NodeFetch)
         expect(globalthis.fetch).to.be.undefined()
         break
