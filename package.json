@@ -16,14 +16,15 @@
     "type": "git",
     "url": "git+https://github.com/achingbrain/native-fetch.git"
   },
-  "dependencies": {},
+  "dependencies": {
+    "globalthis": "^1.0.1"
+  },
   "peerDependencies": {
     "node-fetch": "*"
   },
   "devDependencies": {
     "node-fetch": "^2.6.0",
-    "aegir": "^26.0.0",
-    "globalthis": "^1.0.1"
+    "aegir": "^26.0.0"
   },
   "contributors": [
     "achingbrain <alex@achingbrain.net>"
