@@ -3,7 +3,14 @@
   "version": "2.0.1",
   "description": "Returns native fetch if available or the node-fetch module if not",
   "main": "src/index.js",
+  "browser": {
+    "./src/index.js": "./src/browser.js",
+    "node-fetch": false,
+    "electron-fetch": false
+  },
+  "types": "dist/src/index.d.ts",
   "scripts": {
+    "prepare": "aegir build --no-bundle",
     "test": "aegir test -t node -t browser -t webworker -t electron-main -t electron-renderer",
     "lint": "aegir lint",
     "release": "aegir release --docs false",
@@ -17,14 +24,19 @@
     "url": "git+https://github.com/achingbrain/native-fetch.git"
   },
   "dependencies": {
-    "globalthis": "^1.0.1"
+    "is-electron": "^2.2.0"
   },
   "peerDependencies": {
-    "node-fetch": "*"
+    "node-fetch": "*",
+    "electron-fetch": "*"
   },
   "devDependencies": {
-    "node-fetch": "^2.6.0",
-    "aegir": "^26.0.0"
+    "aegir": "^30.3.0",
+    "electron-fetch": "^1.7.2",
+    "node-fetch": "^2.6.0"
+  },
+  "eslintConfig": {
+    "extends": "ipfs"
   },
   "contributors": [
     "achingbrain <alex@achingbrain.net>"

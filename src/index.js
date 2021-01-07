@@ -1,15 +1,15 @@
 'use strict'
-
-const globalThis = require('globalthis')()
+const isElectron = require('is-electron')
+const IS_ENV_WITH_DOM = typeof window === 'object' && typeof document === 'object' && document.nodeType === 9
+const IS_ELECTRON = isElectron()
+const IS_ELECTRON_MAIN = IS_ELECTRON && !IS_ENV_WITH_DOM
 
 if (globalThis.fetch && globalThis.Headers && globalThis.Request && globalThis.Response) {
-  module.exports = function fetch (...args) {
-    return globalThis.fetch(...args)
-  }
-  module.exports.Headers = globalThis.Headers
-  module.exports.Request = globalThis.Request
-  module.exports.Response = globalThis.Response
-  module.exports.default = module.exports
+  module.exports = require('./browser')
 } else {
-  module.exports = require('node-fetch')
+  if (IS_ELECTRON_MAIN) {
+    module.exports = require('./electron')
+  } else {
+    module.exports = require('./node')
+  }
 }

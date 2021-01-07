@@ -2,41 +2,42 @@
 
 /* eslint-env mocha */
 const { expect } = require('aegir/utils/chai')
-const NativeFetch = require('../src')
+const NativeFetch = require('..')
 const NodeFetch = require('node-fetch')
-const globalthis = require('globalthis')()
+const ElectronFetch = require('electron-fetch')
 
 describe('env', function () {
   it('fetch should be correct in each env', function () {
     switch (process.env.AEGIR_RUNNER) {
       case 'electron-main':
-        expect(NativeFetch).to.equal(NodeFetch)
-        expect(globalthis.fetch).to.be.undefined()
+        expect(NativeFetch.fetch).to.equal(ElectronFetch.default)
+        expect(globalThis.fetch).to.be.undefined()
         break
       case 'electron-renderer':
-        expect(NativeFetch).to.not.equal(NodeFetch)
-        expect(NativeFetch.Headers).to.equal(globalthis.Headers)
-        expect(NativeFetch.Request).to.equal(globalthis.Request)
-        expect(NativeFetch.Response).to.equal(globalthis.Response)
-        expect(globalthis.fetch).to.be.ok()
+        expect(NativeFetch.fetch).to.not.equal(NodeFetch.default)
+        expect(NativeFetch.fetch).to.not.equal(ElectronFetch.default)
+        expect(NativeFetch.Headers).to.equal(globalThis.Headers)
+        expect(NativeFetch.Request).to.equal(globalThis.Request)
+        expect(NativeFetch.Response).to.equal(globalThis.Response)
+        expect(globalThis.fetch).to.be.ok()
         break
       case 'node':
-        expect(NativeFetch).to.equal(NodeFetch)
-        expect(globalthis.fetch).to.be.undefined()
+        expect(NativeFetch.fetch).to.equal(NodeFetch.default)
+        expect(globalThis.fetch).to.be.undefined()
         break
       case 'browser':
-        expect(NativeFetch).to.not.equal(NodeFetch)
-        expect(NativeFetch.Headers).to.equal(globalthis.Headers)
-        expect(NativeFetch.Request).to.equal(globalthis.Request)
-        expect(NativeFetch.Response).to.equal(globalthis.Response)
-        expect(globalthis.fetch).to.be.ok()
+        expect(NativeFetch.fetch).to.equal(globalThis.fetch)
+        expect(NativeFetch.Headers).to.equal(globalThis.Headers)
+        expect(NativeFetch.Request).to.equal(globalThis.Request)
+        expect(NativeFetch.Response).to.equal(globalThis.Response)
+        expect(globalThis.fetch).to.be.ok()
         break
       case 'webworker':
-        expect(NativeFetch).to.not.equal(NodeFetch)
-        expect(NativeFetch.Headers).to.equal(globalthis.Headers)
-        expect(NativeFetch.Request).to.equal(globalthis.Request)
-        expect(NativeFetch.Response).to.equal(globalthis.Response)
-        expect(globalthis.fetch).to.be.ok()
+        expect(NativeFetch.fetch).to.equal(globalThis.fetch)
+        expect(NativeFetch.Headers).to.equal(globalThis.Headers)
+        expect(NativeFetch.Request).to.equal(globalThis.Request)
+        expect(NativeFetch.Response).to.equal(globalThis.Response)
+        expect(globalThis.fetch).to.be.ok()
         break
       default:
         expect.fail(`Could not detect env. Current env is ${process.env.AEGIR_RUNNER}`)
