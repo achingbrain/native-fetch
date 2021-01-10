@@ -8,8 +8,8 @@ if (globalThis.fetch && globalThis.Headers && globalThis.Request && globalThis.R
   module.exports = require('./browser')
 } else {
   if (IS_ELECTRON_MAIN) {
-    module.exports = require('./electron')
+    module.exports = require('electron-fetch')
   } else {
-    module.exports = require('./node')
+    module.exports = require('node-fetch')
   }
 }

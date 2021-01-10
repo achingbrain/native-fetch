@@ -58,5 +58,6 @@ export {
   Request,
   Response,
   Body,
-  BodyInit
+  BodyInit,
+  RequestInit
 }

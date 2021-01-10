@@ -1,8 +1,8 @@
 'use strict'
 
-module.exports = {
-  Headers: globalThis.Headers,
-  Request: globalThis.Request,
-  Response: globalThis.Response,
-  fetch: globalThis.fetch
-}
+module.exports = globalThis.fetch
+
+module.exports.Headers = globalThis.Headers
+module.exports.Request = globalThis.Request
+module.exports.Response = globalThis.Response
+module.exports.default = globalThis.fetch
