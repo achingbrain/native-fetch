@@ -24,16 +24,12 @@
     "url": "git+https://github.com/achingbrain/native-fetch.git"
   },
   "dependencies": {
-    "is-electron": "^2.2.0"
-  },
-  "peerDependencies": {
-    "node-fetch": "*",
-    "electron-fetch": "*"
-  },
-  "devDependencies": {
-    "aegir": "^30.3.0",
+    "is-electron": "^2.2.0",
     "electron-fetch": "^1.7.2",
     "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "aegir": "^30.3.0"
   },
   "eslintConfig": {
     "extends": "ipfs"
