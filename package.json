@@ -1,6 +1,6 @@
 {
   "name": "native-fetch",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "Returns native fetch if available or the undici module if not",
   "main": "src/index.js",
   "types": "dist/src/index.d.ts",
