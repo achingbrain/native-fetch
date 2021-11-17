@@ -1,3 +1,17 @@
+# [4.0.0](https://github.com/achingbrain/native-fetch/compare/v3.0.0...v4.0.0) (2021-11-17)
+
+
+### Features
+
+* swap node-fetch for undici ([#4](https://github.com/achingbrain/native-fetch/issues/4)) ([c744c71](https://github.com/achingbrain/native-fetch/commit/c744c71455f2c5b7904a3a0de3c5d8d7bd4fe578))
+
+
+### BREAKING CHANGES
+
+* only browser streams are returned, requires node 16+
+
+
+
 # [3.0.0](https://github.com/achingbrain/native-fetch/compare/v2.0.1...v3.0.0) (2021-02-03)
 
 
