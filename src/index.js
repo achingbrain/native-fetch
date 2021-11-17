@@ -1,17 +1,18 @@
 'use strict'
 
+// @ts-expect-error globalThis.fetch is defined according to the env types but it's not in node
 if (globalThis.fetch && globalThis.Headers && globalThis.Request && globalThis.Response) {
   module.exports = {
-    default: globalThis.fetch,
+    fetch: globalThis.fetch,
     Headers: globalThis.Headers,
     Request: globalThis.Request,
     Response: globalThis.Response
   }
 } else {
   module.exports = {
-    default: require('node-fetch').default,
-    Headers: require('node-fetch').Headers,
-    Request: require('node-fetch').Request,
-    Response: require('node-fetch').Response
+    fetch: require('undici').fetch,
+    Headers: require('undici').Headers,
+    Request: require('undici').Request,
+    Response: require('undici').Response
   }
 }
