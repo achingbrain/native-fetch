@@ -1,6 +1,6 @@
 {
   "name": "native-fetch",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "Returns native fetch if available or the undici module if not",
   "type": "module",
   "files": [
