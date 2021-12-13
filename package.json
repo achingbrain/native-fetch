@@ -16,7 +16,7 @@
       "import": "./src/index-node.js"
     }
   },
-  "types": "./types/index.d.ts",
+  "types": "./types/src/index.d.ts",
   "typesVersions": {
     "*": {
       "src/*": [
