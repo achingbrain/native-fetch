@@ -23,7 +23,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node: [14, 15]
+        node: [16]
       fail-fast: true
     steps:
       - uses: actions/checkout@v2
@@ -31,32 +31,37 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - run: npm install
-      - run: npx xvfb-maybe npm test
+      - run: npm run pretest
+      - run: npm run test:node
   test-chrome:
     needs: check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - run: npm install
-      - run: npx xvfb-maybe npm test
+      - run: npm run pretest
+      - run: npx xvfb-maybe npm run test:browser
   test-firefox:
     needs: check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - run: npm install
-      - run: npx xvfb-maybe npm test
+      - run: npm run pretest
+      - run: npx xvfb-maybe npm run test:browser -- -- --browser firefox
   test-electron-main:
     needs: check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - run: npm install
-      - run: npx xvfb-maybe npm test
+      - run: npm run pretest
+      - run: npx xvfb-maybe npm run test:electron-main
   test-electron-renderer:
     needs: check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - run: npm install
-      - run: npx xvfb-maybe npm test
+      - run: npm run pretest
+      - run: npx xvfb-maybe npm run test:electron-renderer

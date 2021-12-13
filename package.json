@@ -2,19 +2,48 @@
   "name": "native-fetch",
   "version": "4.0.0",
   "description": "Returns native fetch if available or the undici module if not",
-  "main": "src/index.js",
-  "types": "dist/src/index.d.ts",
+  "type": "module",
   "files": [
-    "src",
-    "dist"
+    "*",
+    "!**/*.tsbuildinfo"
   ],
+  "publishConfig": {
+    "directory": "dist"
+  },
+  "exports": {
+    ".": {
+      "browser": "./src/index.js",
+      "import": "./src/index-node.js"
+    }
+  },
+  "types": "./types/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "src/*": [
+        "types/src/*",
+        "types/src/*/index"
+      ]
+    }
+  },
+  "eslintConfig": {
+    "extends": "ipfs",
+    "parserOptions": {
+      "sourceType": "module"
+    }
+  },
   "scripts": {
-    "test": "aegir test -t node -t browser -t webworker -t electron-main -t electron-renderer",
-    "lint": "aegir lint && aegir ts -p check",
-    "build": "aegir build --no-bundle",
-    "release": "aegir release --docs false",
-    "release-minor": "aegir release --type minor --docs false",
-    "release-major": "aegir release --type major --docs false"
+    "pretest": "npm run build",
+    "test": "npm run test:node && npm run test:browser && npm run test:electron-main && npm run test:electron-renderer",
+    "test:node": "aegir test -t node",
+    "test:browser": "aegir test -t browser",
+    "test:electron-main": "aegir build --esm-tests && aegir test -t electron-main -f ./dist/cjs/node-test/**/*.spec.js",
+    "test:electron-renderer": "aegir build --esm-tests && aegir test -t electron-renderer -f ./dist/cjs/browser-test/**/*.spec.js",
+    "lint": "aegir ts -p check && aegir lint",
+    "release": "aegir release --docs",
+    "release-minor": "aegir release --target node --type minor --docs",
+    "release-major": "aegir release --type major --docs",
+    "build": "aegir build",
+    "dep-check": "aegir dep-check dist/src/**/*.js dist/test/**/*.js"
   },
   "author": "Alex Potsides <alex@achingbrain.net>",
   "license": "MIT",
@@ -27,7 +56,8 @@
   },
   "devDependencies": {
     "aegir": "^36.0.0",
-    "undici": "^4.10.0"
+    "undici": "^4.10.0",
+    "native-fetch": "./dist"
   },
   "contributors": [
     "achingbrain <alex@achingbrain.net>"
