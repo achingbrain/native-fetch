@@ -1,3 +1,7 @@
+## [4.0.1](https://github.com/achingbrain/native-fetch/compare/v4.0.0...v4.0.1) (2021-12-13)
+
+
+
 # [4.0.0](https://github.com/achingbrain/native-fetch/compare/v3.0.0...v4.0.0) (2021-11-17)
 
 
