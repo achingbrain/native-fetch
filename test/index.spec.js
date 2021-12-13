@@ -1,11 +1,10 @@
-'use strict'
-
 /* eslint-env mocha */
-const { expect } = require('aegir/utils/chai')
-const NativeFetch = require('../src')
-const Undici = require('undici')
 
-describe('env', function () {
+import { expect } from 'aegir/utils/chai.js'
+import * as NativeFetch from 'native-fetch'
+import * as Undici from 'undici'
+
+describe(`env ${process.env.AEGIR_RUNNER}`, function () {
   it('fetch should be correct in each env', function () {
     switch (process.env.AEGIR_RUNNER) {
       case 'electron-main':
