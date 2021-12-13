@@ -31,6 +31,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - run: npm install
+      - run: npm run pretest
       - run: npm run test:node
   test-chrome:
     needs: check
@@ -38,6 +39,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: npm install
+      - run: npm run pretest
       - run: npx xvfb-maybe npm run test:browser
   test-firefox:
     needs: check
@@ -45,6 +47,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: npm install
+      - run: npm run pretest
       - run: npx xvfb-maybe npm run test:browser -- -- --browser firefox
   test-electron-main:
     needs: check
@@ -52,6 +55,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: npm install
+      - run: npm run pretest
       - run: npx xvfb-maybe npm run test:electron-main
   test-electron-renderer:
     needs: check
@@ -59,4 +63,5 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: npm install
+      - run: npm run pretest
       - run: npx xvfb-maybe npm run test:electron-renderer
