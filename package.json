@@ -12,6 +12,7 @@
   },
   "exports": {
     ".": {
+      "types": "./types/src/index.d.ts",
       "browser": "./src/index.js",
       "import": "./src/index-node.js"
     }
